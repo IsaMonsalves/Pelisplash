@@ -1,0 +1,2 @@
+# Pelisplash
+Pelisplash es una aplicación móvil que te sumerge en el emocionante mundo del cine. Explora una amplia variedad de películas de diferentes géneros y épocas, mientras accedes a reseñas completas y detalladas de críticos y usuarios apasionados. Además, podrás expresar tus propias opiniones evaluando las películas con puntuaciones y comentarios personalizados. ¡Únete a la comunidad cinéfila y comparte tus perspectivas mientras descubres nuevas joyas cinematográficas!"
