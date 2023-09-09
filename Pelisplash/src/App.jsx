@@ -3,8 +3,6 @@ import './App.css';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import YouTube from 'react-youtube';
-import backgroundImage from '../src/assets/Background.png';
-
 export function App() {
   const API_URL = 'https://api.themoviedb.org/3';
   const API_KEY = 'cc1cb0477f9d2721c417ef14368e4cb4';
@@ -122,10 +120,10 @@ export function App() {
       </div> */}
 
       {/* esto es por prueba */}
-      <div>
+      {/* <div>
         <main>
           {movie ? (
-            <div
+         /  <div
               className="viewtrailer"
               style={{
                 backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
@@ -177,8 +175,7 @@ export function App() {
               )}
             </div>
           ) : null}
-        </main>
-      </div>
+        </main> */}
 
       {/* contenedor para mostrar los posters y las peliculas en la peticion a la api */}
       <div className="container mt-3">
