@@ -6,6 +6,7 @@ import { ErrorPage } from './routes/error-page.jsx';
 import Contact from './routes/contact.jsx';
 // los import con llaves son aquellos sin default
 import { AllMovies } from './/routes/movies.jsx';
+import { MovieInfo } from './routes/movie.jsx';
 
 // import {
 //   BrowserRouter,
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: '/allMovies',
     element: <AllMovies />,
+  },
+  {
+    path: '/movie',
+    element: <MovieInfo />,
   },
 ]);
 

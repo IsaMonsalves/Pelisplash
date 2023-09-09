@@ -1,9 +1,9 @@
 //import { useState } from 'react';
-import './App.css';
+
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import YouTube from 'react-youtube';
-export function movieApp() {
+export function MovieInfo() {
   const API_URL = 'https://api.themoviedb.org/3';
   const API_KEY = 'cc1cb0477f9d2721c417ef14368e4cb4';
   const IMAGE_PATH = 'https://image.tmdb.org/t/p/original';
@@ -101,30 +101,14 @@ export function movieApp() {
         Populares
       </h2>
 
-      {/* contenedor para previsualizar  */}
-      {/* <div>
-        <div
-          className="viewtrailer"
-          style={{
-            backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
-          }}
-        >
-          <div className="container">
-            <button className="boton">Play Trailer</button>
-            <h1 className="text-white">{movie.title}</h1>
-            {movie.overview ? (
-              <p className="text-white">{movie.overview}</p>
-            ) : null}
-          </div>
-        </div>
-      </div> */}
-
       {/* esto es por prueba */}
       <div>
         <main>
           {movie ? (
             <div
               className="viewtrailer"
+              height={350}
+              width={200}
               style={{
                 backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
               }}
@@ -176,28 +160,6 @@ export function movieApp() {
             </div>
           ) : null}
         </main>
-      </div>
-
-      {/* contenedor para mostrar los posters y las peliculas en la peticion a la api */}
-      <div className="container mt-3">
-        <div className="row">
-          {movies.map((movie) => (
-            <div
-              key={movie.id}
-              className="moviePoster"
-              onClick={() => selectMovie(movie)}
-            >
-              <img
-                className="movieImage"
-                src={`${URL_IMAGE + movie.poster_path}`}
-                alt=""
-                height={350}
-                width={200}
-              />
-              <h4 className="text-center">{movie.title}</h4>
-            </div>
-          ))}
-        </div>
       </div>
     </div>
   );
