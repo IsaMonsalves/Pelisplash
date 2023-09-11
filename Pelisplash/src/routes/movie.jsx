@@ -6,20 +6,12 @@ import YouTube from 'react-youtube';
 export function MovieInfo() {
   const API_URL = 'https://api.themoviedb.org/3';
   const API_KEY = 'cc1cb0477f9d2721c417ef14368e4cb4';
-  const IMAGE_PATH = 'https://image.tmdb.org/t/p/original';
-
-  // endpoint para las imagenes
   const URL_IMAGE = 'https://image.tmdb.org/t/p/original';
-
-  // variables de estado
-  const [movies, setMovies] = useState([]);
   const [searchKey, setSearchKey] = useState('');
-  //const [selectedMovie, setSelectedMovie] = useState({})
   const [trailer, setTrailer] = useState(null);
   const [movie, setMovie] = useState({ title: 'Loading Movies' });
   const [playing, setPlaying] = useState(false);
-
-  // funcion para realizar la peticion get a la api
+  // getting API
   const fetchMovies = async (searchKey) => {
     const type = searchKey ? 'search' : 'discover';
     const {
@@ -30,17 +22,12 @@ export function MovieInfo() {
         query: searchKey,
       },
     });
-    //console.log('data',results);
-    //setSelectedMovie(results[0])
 
-    setMovies(results);
     setMovie(results[0]);
-
     if (results.length) {
       await fetchMovie(results[0].id);
     }
   };
-
   // funcion para la peticion de un solo objeto y mostrar en reproductor de videos
   const fetchMovie = async (id) => {
     const { data } = await axios.get(`${API_URL}/movie/${id}`, {
@@ -60,17 +47,7 @@ export function MovieInfo() {
     setMovie(data);
   };
 
-  const selectMovie = async (movie) => {
-    // const data = await fetchMovie(movie.id)
-    // console.log(data);
-    // setSelectedMovie(movie)
-    fetchMovie(movie.id);
-
-    setMovie(movie);
-    window.scrollTo(0, 0);
-  };
-
-  // funcion para buscar peliculas
+  // Search input
   const searchMovies = (e) => {
     e.preventDefault();
     fetchMovies(searchKey);
@@ -84,9 +61,12 @@ export function MovieInfo() {
   return (
     <div>
       <div className="header">
-        <p>Películas</p>
-        <p>Géneros</p>
-        <p>Populares</p>
+        <a href="http://localhost:5173/allMovies" className="headerButtons">
+          Películas
+        </a>
+        <a href="http://localhost:5173/movie" className="headerButtons">
+          Populares
+        </a>
         {/* el buscador */}
         <form className="search" onSubmit={searchMovies}>
           <input
@@ -97,70 +77,67 @@ export function MovieInfo() {
           <button className="btn btn-primary">Search</button>
         </form>
       </div>
-      <h2 className="popular" id="popular">
-        Populares
-      </h2>
 
-      {/* esto es por prueba */}
-      <div>
-        <main>
-          {movie ? (
-            <div
-              className="viewtrailer"
+      {movie ? (
+        <div className="viewtrailer">
+          <div className="imgCal">
+            <img
+              className="moviePoster"
+              src={`${URL_IMAGE + movie.poster_path}`}
+              alt=""
               height={350}
               width={200}
-              style={{
-                backgroundImage: `url("${IMAGE_PATH}${movie.backdrop_path}")`,
-              }}
-            >
-              {playing ? (
-                <>
-                  <YouTube
-                    videoId={trailer.key}
-                    className="reproductor container"
-                    containerClassName={'youtube-container amru'}
-                    opts={{
-                      width: '100%',
-                      height: '100%',
-                      playerVars: {
-                        autoplay: 1,
-                        controls: 0,
-                        cc_load_policy: 0,
-                        fs: 0,
-                        iv_load_policy: 0,
-                        modestbranding: 0,
-                        rel: 0,
-                        showinfo: 0,
-                      },
-                    }}
-                  />
-                  <button onClick={() => setPlaying(false)} className="boton">
-                    Close
-                  </button>
-                </>
+            />
+            <p className="text-white">Calificación: {movie.vote_average}</p>
+          </div>
+          {playing ? (
+            <>
+              <YouTube
+                videoId={trailer.key}
+                className="reproductor container"
+                containerClassName={'youtube-container amru'}
+                opts={{
+                  width: '100%',
+                  height: '100%',
+                  playerVars: {
+                    autoplay: 1,
+                    controls: 0,
+                    cc_load_policy: 0,
+                    fs: 0,
+                    iv_load_policy: 0,
+                    modestbranding: 0,
+                    rel: 0,
+                    showinfo: 0,
+                  },
+                }}
+              />
+              <button onClick={() => setPlaying(false)} className="boton">
+                Close
+              </button>
+            </>
+          ) : (
+            <div className="content">
+              <h1 className="text-white">{movie.title}</h1>
+              <p className="text-white">Reseña: {movie.overview}</p>
+              <p className="text-white">
+                Fecha de lanzamiento: {movie.release_date}
+              </p>
+              <p className="text-white">{movie.director}</p>
+              {trailer ? (
+                <button
+                  className="boton"
+                  onClick={() => setPlaying(true)}
+                  type="button"
+                >
+                  Play Trailer
+                </button>
               ) : (
-                <div className="container">
-                  <div className="">
-                    {trailer ? (
-                      <button
-                        className="boton"
-                        onClick={() => setPlaying(true)}
-                        type="button"
-                      >
-                        Play Trailer
-                      </button>
-                    ) : (
-                      'Sorry, no trailer available'
-                    )}
-                    <h1 className="text-white">{movie.title}</h1>
-                    <p className="text-white">{movie.overview}</p>
-                  </div>
-                </div>
+                'Sorry, no trailer available'
               )}
             </div>
-          ) : null}
-        </main>
-      </div>
+          )}
+        </div>
+      ) : null}
     </div>
   );
 }

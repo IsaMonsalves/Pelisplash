@@ -2,7 +2,6 @@
   min-height: 700px;
   background-size: cover;
   background-position: center;
-
   display: flex;
   align-items: flex-end;
 }
@@ -19,7 +18,6 @@
   width: 100%;
   height: 600px;
 }
-
 #popular {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -33,7 +31,6 @@
   color: white;
   margin-top: 50px;
 }
-
 .searchInput {
   border-radius: 10px;
   border-color: white;
@@ -45,7 +42,7 @@
   margin-left: 100px;
   justify-content: space-around;
 }
-.moviePoster {
+.moviesPoster {
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -86,4 +83,27 @@
   margin: 100px 150px;
   font-size: x-large;
   border-radius: 50px;
+}
+.moviePoster {
+  cursor: pointer;
+  display: flex;
+  border-radius: 20px;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7));
+  margin-top: 50px;
+}
+.imgCal {
+  display: flex;
+  flex-direction: column;
+}
+.viewtrailer {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 50px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 30px;
 }

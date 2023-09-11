@@ -15,11 +15,11 @@ export function App() {
         <p>Populares</p> */}
         {/* el buscador */}
         <form className="search">
-          <input
+          {/* <input
             className="searchInput"
             type="text"
             onChange={(e) => setSearchKey(e.target.value)}
-          />
+          /> */}
           <button className="btn btn-primary">Search</button>
         </form>
       </div>
